@@ -1,4 +1,4 @@
-const fs = require("fs"); //export file system modules
+const fs = require("fs"); //import file system modules
 
 const contactPath = "./data/contacts.json";
 const dirPath = "./data";
@@ -64,7 +64,7 @@ function updateContact(newContact) {
   saveContacts(filteredContacts);
 }
 
-//exporting all function that will be used
+//export all function that will be used
 module.exports = {
   loadContact,
   findContact,

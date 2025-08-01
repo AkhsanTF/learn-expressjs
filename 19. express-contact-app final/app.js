@@ -1,5 +1,5 @@
-const express = require("express"); //export express module
-const expressLayouts = require("express-ejs-layouts"); //export expressLayouts module
+const express = require("express"); //import express module
+const expressLayouts = require("express-ejs-layouts"); //import expressLayouts module
 const {
   loadContact,
   findContact,
@@ -7,8 +7,8 @@ const {
   checkDuplicate,
   deleteContact,
   updateContact,
-} = require("./utils/contacts"); //export from contact.js module
-const { body, validationResult } = require("express-validator"); //export validator module
+} = require("./utils/contacts"); //import from contact.js module
+const { body, validationResult } = require("express-validator"); //import validator module
 
 const app = express();
 const port = 3000;

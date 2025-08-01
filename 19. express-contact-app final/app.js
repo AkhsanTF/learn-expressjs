@@ -1,5 +1,5 @@
-const express = require("express");
-const expressLayouts = require("express-ejs-layouts");
+const express = require("express"); //export express module
+const expressLayouts = require("express-ejs-layouts"); //export expressLayouts module
 const {
   loadContact,
   findContact,
@@ -7,16 +7,16 @@ const {
   checkDuplicate,
   deleteContact,
   updateContact,
-} = require("./utils/contacts");
-const { body, validationResult } = require("express-validator");
+} = require("./utils/contacts"); //export from contact.js module
+const { body, validationResult } = require("express-validator"); //export validator module
 
 const app = express();
 const port = 3000;
 
-app.set("view engine", "ejs");
-app.use(expressLayouts);
+app.set("view engine", "ejs"); //using ejs as a view engine
+app.use(expressLayouts); //using express layout for a middleware of a page template
 app.set("layout", "layouts/main-layout");
-app.use(express.static("public"));
+app.use(express.static("public")); //utilize public directory to serve img and css
 app.use(express.urlencoded({ extended: true }));
 
 app.get("/", (req, res) => {
@@ -25,13 +25,13 @@ app.get("/", (req, res) => {
     title: "My Website",
     students,
   });
-});
+}); //route to index page
 
 app.get("/about", (req, res) => {
   res.render("about", {
     title: "About Page",
   });
-});
+}); //route to about page
 
 app.get("/contact", (req, res) => {
   const contacts = loadContact();
@@ -46,7 +46,7 @@ app.get("/contact", (req, res) => {
     deleted,
     edited,
   });
-});
+}); //function to provide contact.ejs information of current event
 
 //page add contact
 app.get("/contact/add", (req, res) => {
@@ -80,13 +80,13 @@ app.post(
       res.render("add-contact", {
         title: "Add Data Contact Form",
         errors: errors.array(),
-      });
+      }); //function if error happen
     } else {
       addContact(req.body);
-      res.redirect("/contact?added=1");
+      res.redirect("/contact?added=1"); //added=1 used to inform add-contact.ejs to pop up flash message
     }
   }
-);
+); //function if added success
 
 //delete contact process
 app.get("/contact/delete/:name", (req, res) => {
@@ -138,11 +138,11 @@ app.post(
         title: "Edit Data Contact Form",
         errors: errors.array(),
         contact: req.body,
-      });
+      }); //function if error happen
     } else {
       updateContact(req.body);
-      res.redirect("/contact?edited=1");
-    }
+      res.redirect("/contact?edited=1"); //edited=1 used to inform edit-contact.ejs to pop up flash message
+    } //function if edit success
   }
 );
 
@@ -155,12 +155,6 @@ app.get("/contact/:name", (req, res) => {
   });
 });
 
-// app.get("/product/:id", (req, res) => {
-//   res.send(
-//     `Product ID : ${req.params.id} <br> Category ID : ${req.query.category}`
-//   );
-// });
-
 app.use("/", (req, res) => {
   res.status(404);
   res.send("404");
@@ -168,4 +162,4 @@ app.use("/", (req, res) => {
 
 app.listen(port, () => {
   console.log(`Example app listening on port http://localhost:${port}/`);
-});
+}); //function for local hosting

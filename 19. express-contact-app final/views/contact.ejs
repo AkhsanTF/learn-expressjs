@@ -2,6 +2,7 @@
   <div class="row">
     <div class="col-md-8">
       <h2>Contact List</h2>
+      <!-- a function to pop up a flash message if event is success -->
       <% if (added || deleted || edited) { %>
       <div
         style="position: absolute; top: 80px; right: 20px"
@@ -60,6 +61,7 @@
 </div>
 
 <script>
+  // function to remove pop up message after 3 seconds
   setTimeout(() => {
     const alert = document.querySelector(".alert");
     if (alert) {

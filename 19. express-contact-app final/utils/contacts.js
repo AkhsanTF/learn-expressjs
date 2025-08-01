@@ -1,11 +1,14 @@
-const fs = require("fs");
+const fs = require("fs"); //export file system modules
 
 const contactPath = "./data/contacts.json";
 const dirPath = "./data";
 
+//create dirpath folder if there is none
 if (!fs.existsSync(dirPath)) {
   fs.mkdirSync(dirPath);
 }
+
+//create contacts.json if there is none
 if (!fs.existsSync(contactPath)) {
   fs.writeFileSync(contactPath, "[]", "utf8");
 }
@@ -37,17 +40,20 @@ function addContact(contact) {
   saveContacts(contacts);
 }
 
+//checking if students name is already in json
 function checkDuplicate(name) {
   const contacts = loadContact();
   return contacts.find((contact) => contact.name === name);
 }
 
+//deleting contact from contacts.json
 function deleteContact(name) {
   const contacts = loadContact();
   const filteredContacts = contacts.filter((contact) => contact.name !== name);
   saveContacts(filteredContacts);
 }
 
+//updating contact from contacts.json
 function updateContact(newContact) {
   const contacts = loadContact();
   const filteredContacts = contacts.filter(
@@ -58,6 +64,7 @@ function updateContact(newContact) {
   saveContacts(filteredContacts);
 }
 
+//exporting all function that will be used
 module.exports = {
   loadContact,
   findContact,
